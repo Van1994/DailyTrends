@@ -1,0 +1,21 @@
+<div class="p-grid new">
+  <div class="p-col-fixed image">
+    <img [src]="noticia? noticia.image : ''">
+  </div>
+  <div class="p-col">
+    <div class="p-grid" style="height: 100%;">
+      <div class="p-col-12 title">
+        {{noticia? noticia.title : ''}}
+      </div>
+      <div class="p-col-12 body">
+        {{noticia? noticia.body : ''}}
+      </div>
+      <div class="p-col-10 source">
+        {{noticia? noticia.source : ''}}
+      </div>
+      <div class="p-col-2 publisher">
+        {{noticia? noticia.publisher : ''}}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+dt-new {
+  .new {
+    background-color: darkturquoise;
+  }
+  .title {
+    background-color: red;
+    font-size: 2em;
+    height: 20%;
+  }
+  .body {
+    background-color: green;
+    font-size: 1.25em;
+    height: 70%;
+  }
+  .image {
+    height: 100%;
+  }
+  .source {
+    background-color: yellow;
+    height: 10%;
+  }
+  .publisher {
+    background-color: orange;
+    height: 10%;
+  }
+
+  img {
+    object-fit: cover;
+    width: 20em;
+    height: 20em;
+  }
+}
