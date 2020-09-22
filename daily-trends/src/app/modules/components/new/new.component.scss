@@ -1,32 +1,32 @@
 dt-new {
   .new {
-    background-color: darkturquoise;
+    background-color: lightgrey;
   }
   .title {
-    background-color: red;
     font-size: 2em;
-    height: 20%;
+    min-height: 20%;
   }
   .body {
-    background-color: green;
     font-size: 1.25em;
-    height: 70%;
+    min-height: 70%;
   }
   .image {
     height: 100%;
   }
   .source {
-    background-color: yellow;
-    height: 10%;
+    min-height: 10%;
   }
   .publisher {
-    background-color: orange;
-    height: 10%;
+    min-height: 10%;
   }
 
   img {
     object-fit: cover;
     width: 20em;
     height: 20em;
+  }
+
+  .p-button-success {
+    margin-right: 1em;
   }
 }

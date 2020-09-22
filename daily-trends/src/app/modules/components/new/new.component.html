@@ -1,20 +1,36 @@
 <div class="p-grid new">
   <div class="p-col-fixed image">
-    <img [src]="noticia? noticia.image : ''">
+    <ng-container *ngIf="!isEditMode"><img [src]="noticia? noticia.image : ''"></ng-container>
+    <ng-container *ngIf="isEditMode">
+      <div style="width: 20em; height: 20em;">
+        <textarea style="width: 100%; height: 100%;" pInputTextarea autoResize="autoResize" [(ngModel)]="noticia.image"></textarea>
+      </div>
+    </ng-container>
   </div>
-  <div class="p-col">
+  <div class="p-col" style="margin-bottom: .75em;">
     <div class="p-grid" style="height: 100%;">
-      <div class="p-col-12 title">
-        {{noticia? noticia.title : ''}}
+      <div class="p-col title">
+        <ng-container *ngIf="!isEditMode">{{noticia? noticia.title : ''}}</ng-container>
+        <ng-container *ngIf="isEditMode"><input type="text" class="p-inputtext"  pInputText style="width: 100%;" [(ngModel)]="noticia.title"/></ng-container>
+      </div>
+      <div class="p-col-fixed buttons">
+        <button *ngIf="isEditMode" pButton pRipple type="button" label="Guardar" icon="pi pi-check" iconPos="left" class="p-button-success" (click)="save()"></button>
+        <button *ngIf="!isEditMode" pButton pRipple type="button" label="Editar" icon="pi pi-pencil" iconPos="left" class="p-button-success" (click)="edit()"></button>
+        <button pButton pRipple type="button" label="Eliminar" icon="pi pi-times" iconPos="left" class="p-button-danger" (click)="delete()"></button>
       </div>
       <div class="p-col-12 body">
-        {{noticia? noticia.body : ''}}
+        <ng-container *ngIf="!isEditMode">{{noticia? noticia.body : ''}}</ng-container>
+        <ng-container *ngIf="isEditMode">
+          <textarea style="width: 100%; height: 100%;" pInputTextarea autoResize="autoResize" [(ngModel)]="noticia.body"></textarea>
+        </ng-container>
       </div>
       <div class="p-col-10 source">
-        {{noticia? noticia.source : ''}}
+        <ng-container *ngIf="!isEditMode">{{noticia? noticia.source : ''}}</ng-container>
+        <ng-container *ngIf="isEditMode"><input type="text" class="p-inputtext"  pInputText style="width: 100%;" [(ngModel)]="noticia.source"/></ng-container>
       </div>
       <div class="p-col-2 publisher">
-        {{noticia? noticia.publisher : ''}}
+        <ng-container *ngIf="!isEditMode">{{noticia? noticia.publisher : ''}}</ng-container>
+        <ng-container *ngIf="isEditMode"><input type="text" class="p-inputtext"  pInputText style="width: 100%;" [(ngModel)]="noticia.publisher"/></ng-container>
       </div>
     </div>
   </div>
