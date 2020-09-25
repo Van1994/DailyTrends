@@ -26,7 +26,7 @@ export class MainComponent implements OnInit {
   }
 
   addElement() {
-    this.noticiaVacia = {id: this.getLastID(), title: '', body: '', image: '', source: '', publisher: ''};
+    this.noticiaVacia = {id: this.getLastID(), title: '', body: '', image: '', source: '', publisher: '', url: ''};
     this.isAdding = true;
   }
 
@@ -40,7 +40,6 @@ export class MainComponent implements OnInit {
   }
 
   deleteElement(id: number) {
-    debugger;
     this.newsArray.forEach( (item, index) => {
       if(item.id === id) this.newsArray.splice(index,1);
     });
@@ -75,21 +74,48 @@ export class MainComponent implements OnInit {
 
 
       $('article').each((i, el) => {
-        if(i<5) {
+        if(i<6) {
           const title = $(el).find('.ue-c-cover-content__headline').text();
           const source = $(el).find('.ue-c-cover-content__byline-name').text();
+          const img = $(el).find('img').attr('src');
+          const href = $(el).find('.ue-c-cover-content__link').attr('href');
+          const id = this.getLastID();
           this.newsArray.push ({
-            id: this.getLastID(),
+            id: id,
             title: title,
             body: '',
-            image: '',
+            image: img? img : null,
             source: source,
             publisher: periodico,
+            url: href
           });
+
+          this.getBodyText(id);
         }
       })
     }
   )
   .catch(console.error); // Error handling
+  }
+
+
+  getBodyText(id: number){
+    this.newsArray.forEach( (item, index) => {
+      if(item.id === id) {
+        let url = 'https://cors-anywhere.herokuapp.com/'+item.url; // URL we're scraping
+
+        const AxiosInstance = axios.create();
+
+        AxiosInstance.get(url).then(
+        response => {
+          const html = response.data; // Get the HTML from the HTTP request
+          const $ = cheerio.load(html); // Load the HTML string into cheerio
+          item.body = $('.ue-c-article__standfirst').text();
+          item.source = $('.ue-c-article__byline-name').text();
+          item.image = $('.ue-c-article__media-img-container').find('img').attr('src');
+        }
+      ).catch(console.error);
+      }
+    });
   }
 }

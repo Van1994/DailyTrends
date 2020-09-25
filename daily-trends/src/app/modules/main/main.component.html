@@ -4,13 +4,13 @@
   </div>
   <div class="p-col-6">
     <div style="height: 4em; text-align: right;">
-      <button pButton pRipple type="button" label="Añadir" icon="pi pi-plus" iconPos="left" class="p-button-primary" (click)="addElement()"></button>
+      <button pButton pRipple type="button" icon="pi pi-plus" iconPos="left" class="p-button-primary" (click)="addElement()"></button>
     </div>
   </div>
   <div *ngIf="isAdding" class="p-col-12" style="margin-top: 1em; margin-bottom: 1em;">
     <dt-new [noticia]="noticiaVacia" [editMode]="true" (cancelEmitter)="cancelAddingElement()" (addEmitter)="saveNewElement()"></dt-new>
   </div>
-  <div class="p-col-12" style="margin-top: 1em; margin-bottom: 1em;" *ngFor="let noticia of newsArray">
+  <div class="p-col-6" style="margin-top: 1em; margin-bottom: 1em;" *ngFor="let noticia of newsArray">
     <dt-new [noticia]="noticia" [editMode]="false" (deleteEmitter)="deleteElement(noticia.id)"></dt-new>
   </div>
 </div>

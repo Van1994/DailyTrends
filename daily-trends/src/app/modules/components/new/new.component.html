@@ -1,5 +1,5 @@
-<div class="p-grid new">
-  <div class="p-col-fixed image">
+<div class="p-grid new" style="height: 21.35em; margin-right: .5em; margin-left: .5em;">
+  <div class="p-col-fixed image" *ngIf="noticia && noticia.image && noticia.image != ''">
     <ng-container *ngIf="!isEditMode"><img [src]="noticia? noticia.image : ''"></ng-container>
     <ng-container *ngIf="isEditMode">
       <div style="width: 20em; height: 20em;">
@@ -10,13 +10,16 @@
   <div class="p-col" style="margin-bottom: .75em;">
     <div class="p-grid" style="height: 100%;">
       <div class="p-col title">
-        <ng-container *ngIf="!isEditMode">{{noticia? noticia.title : ''}}</ng-container>
+        <ng-container *ngIf="!isEditMode">
+          <a [href]="noticia? noticia.url : '#'" target="_blank">
+          {{noticia? noticia.title : ''}}</a>
+        </ng-container>
         <ng-container *ngIf="isEditMode"><input type="text" class="p-inputtext"  pInputText style="width: 100%;" [(ngModel)]="noticia.title"/></ng-container>
       </div>
       <div class="p-col-fixed buttons">
-        <button *ngIf="isEditMode" pButton pRipple type="button" label="Guardar" icon="pi pi-check" iconPos="left" class="p-button-success" (click)="save()"></button>
-        <button *ngIf="!isEditMode" pButton pRipple type="button" label="Editar" icon="pi pi-pencil" iconPos="left" class="p-button-success" (click)="edit()"></button>
-        <button pButton pRipple type="button" label="Eliminar" icon="pi pi-times" iconPos="left" class="p-button-danger" (click)="delete()"></button>
+        <button *ngIf="isEditMode" pButton pRipple type="button" icon="pi pi-check" iconPos="left" class="p-button-success" (click)="save()"></button>
+        <button *ngIf="!isEditMode" pButton pRipple type="button" icon="pi pi-pencil" iconPos="left" class="p-button-success" (click)="edit()"></button>
+        <button pButton pRipple type="button" icon="pi pi-times" iconPos="left" class="p-button-danger" (click)="delete()"></button>
       </div>
       <div class="p-col-12 body">
         <ng-container *ngIf="!isEditMode">{{noticia? noticia.body : ''}}</ng-container>

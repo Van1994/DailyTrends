@@ -5,4 +5,5 @@ export class Feed {
   image: string;
   source: string;
   publisher: string;
+  url: string;
 }
