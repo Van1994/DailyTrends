@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "daily-trends"
+    }
+  },
+  "defaultProject": "daily-trends",
+  "cli": {
+    "analytics": "fee0bfb1-060b-45d7-90c0-7ba028605e48"
+  }
 }

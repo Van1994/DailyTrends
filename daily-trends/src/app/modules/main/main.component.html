@@ -10,7 +10,7 @@
   <div *ngIf="isAdding" class="p-col-12" style="margin-top: 1em; margin-bottom: 1em;">
     <dt-new [noticia]="noticiaVacia" [editMode]="true" (cancelEmitter)="cancelAddingElement()" (addEmitter)="saveNewElement()"></dt-new>
   </div>
-  <div class="p-col-12" style="margin-top: 1em; margin-bottom: 1em;" *ngFor="let noticia of dummyNewsArray">
+  <div class="p-col-12" style="margin-top: 1em; margin-bottom: 1em;" *ngFor="let noticia of newsArray">
     <dt-new [noticia]="noticia" [editMode]="false" (deleteEmitter)="deleteElement(noticia.id)"></dt-new>
   </div>
 </div>
