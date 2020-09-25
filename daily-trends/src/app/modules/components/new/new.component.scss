@@ -1,6 +1,6 @@
 dt-new {
   .new {
-    background-color: lightgrey;
+    background-color: #f3f3f3;
   }
   .title {
     font-size: 2em;
@@ -9,6 +9,14 @@ dt-new {
   .body {
     font-size: 1.25em;
     min-height: 70%;
+  }
+  .body-edit {
+    font-size: 1.25em;
+    min-height: 50%;
+  }
+  .url {
+    font-size: 1.25em;
+    min-height: 10%;
   }
   .image {
     height: 100%;

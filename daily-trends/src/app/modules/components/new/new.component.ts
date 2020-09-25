@@ -45,7 +45,11 @@ export class NewComponent implements OnInit {
     if(this.addingElement) {
       this.cancelEmitter.emit();
     } else {
-      this.deleteEmitter.emit();
+      if(this.isEditMode) {
+        this.isEditMode= false;
+      } else {
+        this.deleteEmitter.emit();
+      }
     }
   }
 }

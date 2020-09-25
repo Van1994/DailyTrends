@@ -14,7 +14,7 @@ body {
   height: 4em;
   display: flex;
   align-items: center;
-  background-color: #1976d2;
+  background-color: #216087;
   color: white;
   font-weight: 600;
 }
@@ -25,10 +25,15 @@ body {
 a,
 a:visited,
 a:hover {
-  color: #1976d2;
+  color: #216087;
   text-decoration: none;
 }
 
 a:hover {
   color: #125699;
+}
+
+.p-button {
+  background: #216087 !important;
+  border: 1px solid #125699 !important;
 }
