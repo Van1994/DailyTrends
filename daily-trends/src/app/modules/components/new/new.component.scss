@@ -3,12 +3,14 @@ dt-new {
     background-color: #f3f3f3;
   }
   .title {
-    font-size: 2em;
-    min-height: 20%;
+    font-size: 1.5em;
+    font-family: Valencia,Times New Roman,Times,serif;
+    font-style: normal;
   }
   .body {
     font-size: 1.25em;
-    min-height: 70%;
+    font-family: Valencia,Times New Roman,Times,serif;
+    font-style: normal;
   }
   .body-edit {
     font-size: 1.25em;
@@ -22,16 +24,14 @@ dt-new {
     height: 100%;
   }
   .source {
-    min-height: 10%;
   }
   .publisher {
-    min-height: 10%;
   }
 
   img {
     object-fit: cover;
-    width: 20em;
-    height: 20em;
+    width: 19em;
+    height: 19em;
   }
 
   .p-button-success {

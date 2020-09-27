@@ -8,12 +8,16 @@ import { Component, ViewEncapsulation, OnInit, EventEmitter, Output } from "@ang
 })
 
 export class ToolbarComponent implements OnInit {
-  @Output() addEmitter: EventEmitter<void> = new EventEmitter<void>();
+  @Output() addButtonEmitter: EventEmitter<void> = new EventEmitter<void>();
 
   constructor() {
   }
 
   ngOnInit() {
 
+  }
+
+  addElement() {
+    this.addButtonEmitter.emit();
   }
 }

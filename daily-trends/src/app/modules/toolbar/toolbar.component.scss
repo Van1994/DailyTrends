@@ -1,5 +1,7 @@
 dt-toolbar {
-  button.p-button-text.p-button.p-component {
-    background-color: white !important;
+  .p-button {
+    background: white !important;
+    color: #216087 !important;
+    border: 1px solid #f3f3f3 !important;
   }
 }

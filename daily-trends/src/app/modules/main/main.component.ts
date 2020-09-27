@@ -22,7 +22,8 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.scrapWeb('EL MUNDO');
+    this.scrapWebElMundo('EL MUNDO');
+    this.scrapWebElPais('EL PAIS');
   }
 
   addElement() {
@@ -55,14 +56,9 @@ export class MainComponent implements OnInit {
     this.newsArray.push(myClonedElement);
   }
 
-  scrapWeb(periodico: string) {
-    let url = 'https://cors-anywhere.herokuapp.com/'; // URL we're scraping
-
-    switch (periodico) {
-      case 'EL MUNDO': url+='https://www.elmundo.es/'; break;
-      case 'EL PAIS': url+='https://www.elpais.com/'; break;
-      default: return; break;
-    }
+  scrapWebElPais(periodico: string) {
+    const urlElPais = "https://www.elpais.com/";
+    let url = 'https://cors-anywhere.herokuapp.com/' + urlElPais; // URL we're scraping
 
     const AxiosInstance = axios.create();
 
@@ -74,23 +70,21 @@ export class MainComponent implements OnInit {
 
 
       $('article').each((i, el) => {
-        if(i<6) {
-          const title = $(el).find('.ue-c-cover-content__headline').text();
-          const source = $(el).find('.ue-c-cover-content__byline-name').text();
-          const img = $(el).find('img').attr('src');
-          const href = $(el).find('.ue-c-cover-content__link').attr('href');
+        if(i<5) {
+          const title = $(el).find('.headline').find('a').text();
+          const href = urlElPais + $(el).find('.headline').find('a').attr('href');
           const id = this.getLastID();
           this.newsArray.push ({
             id: id,
             title: title,
             body: '',
-            image: img? img : null,
-            source: source,
+            image: '',
+            source: '',
             publisher: periodico,
             url: href
           });
 
-          this.getBodyText(id);
+          this.getMainInfoElPais(id);
         }
       })
     }
@@ -98,8 +92,7 @@ export class MainComponent implements OnInit {
   .catch(console.error); // Error handling
   }
 
-
-  getBodyText(id: number){
+  getMainInfoElPais(id: number){
     this.newsArray.forEach( (item, index) => {
       if(item.id === id) {
         let url = 'https://cors-anywhere.herokuapp.com/'+item.url; // URL we're scraping
@@ -110,8 +103,77 @@ export class MainComponent implements OnInit {
         response => {
           const html = response.data; // Get the HTML from the HTTP request
           const $ = cheerio.load(html); // Load the HTML string into cheerio
+          const sources = [];
+          $('.a_aut').each(function(i, elem) {
+            sources[i] = $(this).text();
+          });
+          let sourcelist = sources.join(', ');
+
+          item.body = $('.a_st').text();
+          item.source = sourcelist;
+          item.image = $('.lead_art').find('img').attr('src');
+        }
+      ).catch(console.error);
+      }
+    });
+  }
+
+  scrapWebElMundo(periodico: string) {
+    let url = 'https://cors-anywhere.herokuapp.com/https://www.elmundo.es/'; // URL we're scraping
+
+    const AxiosInstance = axios.create();
+
+    AxiosInstance.get(url).then(
+    response => {
+      const html = response.data; // Get the HTML from the HTTP request
+      const $ = cheerio.load(html); // Load the HTML string into cheerio
+      //const newsPanel = $('#fusion-app');
+
+
+      $('article').each((i, el) => {
+        if(i<5) {
+          const title = $(el).find('.ue-c-cover-content__headline').text();
+          const href = $(el).find('.ue-c-cover-content__link').attr('href');
+          const id = this.getLastID();
+          this.newsArray.push ({
+            id: id,
+            title: title,
+            body: '',
+            image: '',
+            source: '',
+            publisher: periodico,
+            url: href
+          });
+
+          this.getMainInfoElMundo(id);
+        }
+      })
+    }
+  )
+  .catch(console.error); // Error handling
+  }
+
+
+  getMainInfoElMundo(id: number){
+    this.newsArray.forEach( (item, index) => {
+      if(item.id === id) {
+        let url = 'https://cors-anywhere.herokuapp.com/'+item.url; // URL we're scraping
+
+        const AxiosInstance = axios.create();
+
+        AxiosInstance.get(url).then(
+        response => {
+          const html = response.data; // Get the HTML from the HTTP request
+          const $ = cheerio.load(html); // Load the HTML string into cheerio
+
+          const sources = [];
+          $('.ue-c-article__byline-name').each(function(i, elem) {
+            sources[i] = $(this).text();
+          });
+          let sourcelist = sources.join(', ');
+
           item.body = $('.ue-c-article__standfirst').text();
-          item.source = $('.ue-c-article__byline-name').text();
+          item.source = sourcelist;
           item.image = $('.ue-c-article__media-img-container').find('img').attr('src');
         }
       ).catch(console.error);
