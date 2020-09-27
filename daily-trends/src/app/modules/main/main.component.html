@@ -2,10 +2,10 @@
   <div class=" p-col-12">
     <dt-toolbar (addButtonEmitter)="addElement()"></dt-toolbar>
   </div>
-  <div *ngIf="isAdding" class="p-col-12" style="margin-top: 1em; margin-bottom: 1em;">
+  <div *ngIf="isAdding" class="p-col-12 article">
     <dt-new [noticia]="noticiaVacia" [editMode]="true" (cancelEmitter)="cancelAddingElement()" (addEmitter)="saveNewElement()"></dt-new>
   </div>
-  <div class="p-col-6" style="margin-top: 1em; margin-bottom: 1em;" *ngFor="let noticia of newsArray">
+  <div class="p-col-6 article" *ngFor="let noticia of newsArray">
     <dt-new [noticia]="noticia" [editMode]="false" (deleteEmitter)="deleteElement(noticia.id)"></dt-new>
   </div>
 </div>

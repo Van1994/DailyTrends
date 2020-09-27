@@ -1,11 +1,11 @@
-<div class="p-grid new" style="height: 20em; margin-right: .5em; margin-left: .5em;">
+<div class="p-grid article">
 <!-------------------------------------------------- NOTICIA MODO LECTURA -------------------------------------------------->
 <ng-container *ngIf="!isEditMode">
   <div class="p-col-fixed image" *ngIf="(noticia && noticia.image && noticia.image != '')">
     <ng-container><img [src]="noticia? noticia.image : ''"></ng-container>
   </div>
-  <div class="p-col" style="margin-bottom: .75em;">
-    <div class="p-grid  vertical-container" style="height: 100%;">
+  <div class="p-col article-text">
+    <div class="p-grid  vertical-container height100">
       <div class="p-col title p-as-start">
         <ng-container>
           <a *ngIf="noticia && noticia.url && noticia.url != ''" [href]="noticia? noticia.url : '#'" target="_blank">
@@ -23,10 +23,10 @@
       <div class="p-col-12 body p-as-center">
         {{noticia? noticia.body : ''}}
       </div>
-      <div class="p-col-10 source p-as-end">
+      <div class="p-col-10 p-as-end">
         <ng-container>{{noticia? noticia.source : ''}}</ng-container>
       </div>
-      <div class="p-col-2 publisher p-as-end" style="text-align: right;">
+      <div class="p-col-2 p-as-end publisher">
         <ng-container>{{noticia? noticia.publisher : ''}}</ng-container>
       </div>
     </div>
@@ -36,31 +36,31 @@
 <ng-container *ngIf="isEditMode">
   <div class="p-col-fixed image">
     <ng-container>
-      <div style="width: 19em; height: 19em;">
-        <textarea style="width: 100%; height: 100%;" pInputTextarea autoResize="autoResize" [(ngModel)]="noticia.image" placeholder="URL de la imagen"></textarea>
+      <div class="image-src">
+        <textarea class="height100 width100" pInputTextarea autoResize="autoResize" [(ngModel)]="noticia.image" placeholder="URL de la imagen"></textarea>
       </div>
     </ng-container>
   </div>
-  <div class="p-col" style="margin-bottom: .75em;">
-    <div class="p-grid" style="height: 100%;">
+  <div class="p-col article-text">
+    <div class="p-grid height100">
       <div class="p-col">
-        <ng-container><input type="text" class="p-inputtext"  pInputText style="width: 100%;" [(ngModel)]="noticia.title" placeholder="Título"/></ng-container>
+        <ng-container><input type="text" class="p-inputtext width100"  pInputText [(ngModel)]="noticia.title" placeholder="Título"/></ng-container>
       </div>
       <div class="p-col-fixed buttons">
         <button pButton pRipple type="button" icon="pi pi-check" iconPos="left" class="p-button-success" (click)="save()"></button>
         <button pButton pRipple type="button" icon="pi pi-times" iconPos="left" class="p-button-danger" (click)="delete()"></button>
       </div>
       <div class="p-col-12 body-edit">
-          <textarea style="width: 100%; height: 100%;" pInputTextarea autoResize="autoResize" [(ngModel)]="noticia.body"  placeholder="Noticia"></textarea>
+          <textarea class="height100 width100" pInputTextarea autoResize="autoResize" [(ngModel)]="noticia.body"  placeholder="Noticia"></textarea>
       </div>
       <div class="p-col-12">
-        <input type="text" class="p-inputtext"  pInputText style="width: 100%;" [(ngModel)]="noticia.url"  placeholder="URL"/>
+        <input type="text" class="p-inputtext width100"  pInputText [(ngModel)]="noticia.url"  placeholder="URL"/>
       </div>
       <div class="p-col-10">
-        <ng-container><input type="text" class="p-inputtext"  pInputText style="width: 100%;" [(ngModel)]="noticia.source"  placeholder="Fuentes"/></ng-container>
+        <ng-container><input type="text" class="p-inputtext width100"  pInputText [(ngModel)]="noticia.source"  placeholder="Fuentes"/></ng-container>
       </div>
       <div class="p-col-2">
-        <ng-container><input type="text" class="p-inputtext"  pInputText style="width: 100%;" [(ngModel)]="noticia.publisher"  placeholder="Periódico"/></ng-container>
+        <ng-container><input type="text" class="p-inputtext width100"  pInputText [(ngModel)]="noticia.publisher"  placeholder="Periódico"/></ng-container>
       </div>
     </div>
   </div>

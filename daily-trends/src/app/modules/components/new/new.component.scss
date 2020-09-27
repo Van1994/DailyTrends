@@ -1,5 +1,14 @@
 dt-new {
-  .new {
+  .article {
+    height: 20em;
+    margin-right: .5em;
+    margin-left: .5em;
+    background-color: #f3f3f3;
+  }
+  .article-text {
+    height: 20em;
+    margin-right: .5em;
+    margin-left: .5em;
     background-color: #f3f3f3;
   }
   .title {
@@ -18,16 +27,18 @@ dt-new {
   }
   .url {
     font-size: 1.25em;
-    min-height: 10%;
+  }
+
+  .publisher {
+    text-align: right;
   }
   .image {
     height: 100%;
   }
-  .source {
+  .image-src {
+    width: 19em;
+    height: 19em;
   }
-  .publisher {
-  }
-
   img {
     object-fit: cover;
     width: 19em;
@@ -36,5 +47,13 @@ dt-new {
 
   .p-button-success {
     margin-right: 1em;
+  }
+
+  .width100 {
+    width: 100%;
+  }
+
+  .height100 {
+    height: 100%;
   }
 }

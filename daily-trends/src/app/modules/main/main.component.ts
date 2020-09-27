@@ -27,11 +27,11 @@ export class MainComponent implements OnInit {
   }
 
   addElement() {
-    this.noticiaVacia = {id: this.getLastID(), title: '', body: '', image: '', source: '', publisher: '', url: ''};
+    this.noticiaVacia = {id: this.getNextID(), title: '', body: '', image: '', source: '', publisher: '', url: ''};
     this.isAdding = true;
   }
 
-  getLastID() {
+  getNextID() {
     let maxId = 0;
     this.newsArray.forEach( (item, index) => {
       maxId= maxId > item.id ? maxId : item.id;
@@ -66,14 +66,12 @@ export class MainComponent implements OnInit {
     response => {
       const html = response.data; // Get the HTML from the HTTP request
       const $ = cheerio.load(html); // Load the HTML string into cheerio
-      //const newsPanel = $('#fusion-app');
-
 
       $('article').each((i, el) => {
         if(i<5) {
           const title = $(el).find('.headline').find('a').text();
           const href = urlElPais + $(el).find('.headline').find('a').attr('href');
-          const id = this.getLastID();
+          const id = this.getNextID();
           this.newsArray.push ({
             id: id,
             title: title,
@@ -113,7 +111,7 @@ export class MainComponent implements OnInit {
           item.source = sourcelist;
           item.image = $('.lead_art').find('img').attr('src');
         }
-      ).catch(console.error);
+      ).catch(console.error); // Error handling
       }
     });
   }
@@ -127,14 +125,12 @@ export class MainComponent implements OnInit {
     response => {
       const html = response.data; // Get the HTML from the HTTP request
       const $ = cheerio.load(html); // Load the HTML string into cheerio
-      //const newsPanel = $('#fusion-app');
-
 
       $('article').each((i, el) => {
         if(i<5) {
           const title = $(el).find('.ue-c-cover-content__headline').text();
           const href = $(el).find('.ue-c-cover-content__link').attr('href');
-          const id = this.getLastID();
+          const id = this.getNextID();
           this.newsArray.push ({
             id: id,
             title: title,
@@ -176,7 +172,7 @@ export class MainComponent implements OnInit {
           item.source = sourcelist;
           item.image = $('.ue-c-article__media-img-container').find('img').attr('src');
         }
-      ).catch(console.error);
+      ).catch(console.error); // Error handling
       }
     });
   }

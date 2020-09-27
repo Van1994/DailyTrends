@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit, EventEmitter, Output } from "@angular/core";
+import { Component, ViewEncapsulation, EventEmitter, Output } from "@angular/core";
 
 @Component({
   selector: 'dt-toolbar',
@@ -7,15 +7,8 @@ import { Component, ViewEncapsulation, OnInit, EventEmitter, Output } from "@ang
   encapsulation: ViewEncapsulation.None
 })
 
-export class ToolbarComponent implements OnInit {
+export class ToolbarComponent {
   @Output() addButtonEmitter: EventEmitter<void> = new EventEmitter<void>();
-
-  constructor() {
-  }
-
-  ngOnInit() {
-
-  }
 
   addElement() {
     this.addButtonEmitter.emit();
